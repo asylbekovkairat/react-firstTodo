@@ -1,0 +1,11 @@
+.search-btn {
+  font-size: 22px;
+  padding: 15px;
+  background: aquamarine;
+  border: 2px solid aquamarine;
+  border-radius: 0 10px 10px 0;
+}
+
+.inp {
+  border: 3px dashed red; 
+}

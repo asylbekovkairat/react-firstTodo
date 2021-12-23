@@ -1,0 +1,9 @@
+.inp {
+  padding: 15px;
+  font-size: 22px;
+  border: 2px solid aquamarine;
+  border-radius: 10px 0 0 10px;
+}
+.inp:focus {
+  outline: none;
+}
