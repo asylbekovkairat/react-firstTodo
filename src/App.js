@@ -1,59 +1,41 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Input from "./components/input/Input.jsx";
 import Button from "./components/button/button.js";
 import { Todos } from "./components/todos/Todos.js";
-import putin from "./img/putin.jpg"
-
-const Plus = (props) => { // props = {a: 5, b: 15}
-  return (
-    <div>
-      {props.a + props.b}
-    </div>
-  )
-}  
-
-const GetUser = (props) =>  {
-  return (
-    <div>
-      Меня зовут dsf {props.name} и мне {props.age}лет 
-      <br />
-      <img width={150} src={props.img} alt="User" />
-    </div>
-  )
-} 
-
-
-
+import Changecash from "./components/changeCash/changeCash";
 function App() {
-  const [state, setState] = useState("normal");
+  const [inp, setInp] = useState("");
+  const [todoList, setTodoList] = useState([ {id:1 , title: "Купить соль", status:false} ]);
 
-
-  console.log(state);
-  const getFood = () => {
-    if(state === "normal") {
-      setState("good")
-    } else  if(state === "good"){
-      setState("excellent")
-    } else if(state === "excellent") {
-      setState("empty")
-    } else {
-      setState("normal")
+  const handleClick = () => {
+    if(inp){
+      setTodoList([...todoList, { id: Math.random(), title: inp, status:false}]) 
+      setInp('')
     }
+  }
+
+  const handleDelete = (el) => {
+    const newArr = todoList.filter((item) => item.id !== el.id)
+    setTodoList(newArr)
   }
 
   return (
     <div className="App">
-      <button onClick={getFood}>Кушать сендвич</button>
-      <div className="test">Hello from App</div>
-      <Input />
-      <Button />
-      <Todos />
-      <Plus a={5} b={18} />  {/* Plus({a: 5, b: 18})  */}
-      <GetUser name="Amanbek" age="45" img={putin} />
+      <Input value={inp} change={setInp} />
+      <Button click={handleClick} />
+      <Todos list={todoList} onDelete={handleDelete}/>
+      <Changecash/>
     </div>
   );
 }
 
 
 export default App;
+
+
+function f (a,b){
+  return a + b
+}
+
+f(5, 9)

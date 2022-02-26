@@ -1,13 +1,13 @@
 import css from "./button.module.css"
-
-console.log(css);
-
-function Button() {
+import { useState } from "react"
+function Button(props) {
+    
     return (
-        <button className={css["search-btn"]}>
-            Поиск +
+        <button onClick={props.click} className={css["search-btn"]}>
+            +++
         </button>
     )
 }
 
 export default Button;
+

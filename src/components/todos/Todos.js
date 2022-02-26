@@ -1,44 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import css from "./Todos.module.css"
 
 
-
-export const TodoItem = (props) => { // props = { value: "Купить сахар" }
-  // console.log(props); // { value: "Купить сахар" }
-  return (
-    <li className={css.item} >{props.value}</li>
-  )
-}
-
-
-export const Todos = () => {
-  const [todoList, setTodoList] = useState([
-    "Купить сахар",
-    "Купить соль",
-    "Куить колу"
-  ]);
-
+export const Todos = (props) => {
+  
   return (
     <ul>
-      <div className={css.test} >Hello from Todo</div>
       {
-        todoList.map((item) => {
-          return <TodoItem value={item} /> // TodoItem({ value: "Купить сахар" })
+        props.list.map((item)=> {
+          return <TodoItem value={item} onDelete={props.onDelete} onDone={props.onDone}/> 
         })
-        // [
-        //   <TodoItem value="Купить сахар" />,
-        //   <TodoItem value="Купить сахар" />,
-        //   <TodoItem value="Купить сахар" />,
-        // ]
       }
     </ul>
   );
 };
 
-
+export const TodoItem = (props) => {
+  return (
+    <li className={css.item} >
+      <button onClick={()=> props.onDelete(props.value)}>del</button>
+      {" "}
+      { props.value.status ? null : <button onClick={()=> props.onDone(props.value.status)}>Done</button>}
+      {" "}
+      {props.value.title}
+    </li>
+  )
+}
 
 function Test() {
   return <div>Test</div>
 }
 
 export default Test;
+
