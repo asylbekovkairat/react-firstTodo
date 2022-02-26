@@ -9,10 +9,12 @@ const Changecash = () => {
   const addCash = (cash) => {
     dispath({ type: "ADD_CASH", payload: cash })
   }
+
   const getCash = (cash) => {
     dispath({ type: "GET_CASH", payload: cash })
   }
   
+
   return (
     <div>
       <div> {cash} </div>
